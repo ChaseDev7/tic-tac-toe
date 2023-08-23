@@ -11,15 +11,19 @@
   <script src="app.js" defer></script>
 </head>
 <body>
-  <h1>TIC TAC TOE</h1>
+  <h1><div id="bat-header">BAT</div> <div id="man-header">MAN</div> <div id="foe-header">FOE</div></h1>
   <div id="container">
     <div id="selector-container">
       <h2>Pick a player:</h2>
       <div id="player-selector">
-        <h3>BATMAN</h3>
-        <img src="#" alt="picture of batman">
-        <h3>JOKER</h3>
-        <img src="#" alt="picture of joker">
+        <div id="batman-player-selector">
+          <h3>BATMAN</h3>
+          <img id="batman-select-img" src="images/batman.jpg" alt="picture of batman">
+        </div>
+        <div id="joker-player-selector">
+          <h3>JOKER</h3>
+          <img id="joker-select-img" src="images/joker.jpg" alt="picture of joker">
+        </div>
       </div>
     </div>
     <div id="board-container">

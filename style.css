@@ -17,41 +17,101 @@ img, h1, h2, h3 {
 }
 
 h1 {
+  display: flex;
   font-size: 50px;
   cursor: pointer;
 }
 
-h2 {
+#bat-header:hover, #foe-header:hover, #man-header:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--text-color);
+  text-decoration-thickness: 10px;
+}
+
+#batman-player-selector, #joker-player-selector {
+  transform-origin: center;
+  transform: rotate(-7deg);
+  transition: 0.7s;
+}
+
+#batman-player-selector:hover, #joker-player-selector:hover {
+  transform-origin: center;
+  transform: rotate(7deg);
+  text-decoration: underline;
+  text-decoration-color: var(--text-color);
+  text-decoration-thickness: 3px;
+}
+
+#batman-select-img, #joker-select-img {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  border-width: 4px;
+  border-style: solid;
+  border-color: var(--text-color);
+  border-radius: 20px;
+}
+
+#bat-header, #foe-header {
+  margin: 0 10px;
+  transform-origin: center;
+  transform: rotate(10deg);
+  transition: 0.7s;
+}
+
+#man-header {
+  transform-origin: center;
+  margin: 0 10px;
+  transform: rotate(-10deg);
+  transition: 0.7s;
+}
+
+#bat-header:hover, #foe-header:hover {
+  margin: 0 10px;
+  transform-origin: center;
+  transform: rotate(-7deg);
+}
+
+#man-header:hover {
+  transform-origin: center;
+  margin: 0 10px;
+  transform: rotate(7deg);
+}
+
+h2, h3 {
   margin: 10px 0;
 }
 
 #container {
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 
 #selector-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 50px;
 }
 
 #player-selector {
   width: 150px;
-  height: 200px;
+  height: auto;
+  padding-bottom: 20px;
   border-width: 2px;
   border-style: solid;
   border-color: var(--box-bg-color);
   border-radius: 20px;
+}
+
+#batman-player-selector, #joker-player-selector {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
 }
 
 #game-board {
-  margin: 20px 0 0 50px;
   width: 400px;
   height: 400px;
   background-color: var(--background-color);
@@ -68,6 +128,7 @@ h2 {
   justify-content: center;
   align-items: center;
   font-size: 35px;
+  cursor: pointer;
 }
 
 @media (max-width: 650px) {
@@ -78,6 +139,13 @@ h2 {
 
   #player-selector {
     width: 300px;
-    height: 100px;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  #selector-container {
+    margin-right: 0px;
+    margin-bottom: 20px;
   }
 }
