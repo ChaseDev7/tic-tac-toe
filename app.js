@@ -25,8 +25,8 @@ const Player = (player, selector) => {
 }
 
 // ADD FUNCTION INSTEAD OF ARGUMENT ONCE PLAYER SELECTED.
-const batman = Player("BATMAN", "X");
-const joker = Player("JOKER", "O");
+const player = Player("Player", "X");
+const opponent = Player("Opponent", "O");
 
 console.log(batman.playerName);
 console.log(batman.boardSelector);

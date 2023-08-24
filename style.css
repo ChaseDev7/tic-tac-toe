@@ -9,7 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Permanent Marker', cursive;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 img, h1, h2, h3 {
@@ -22,65 +22,33 @@ h1 {
   cursor: pointer;
 }
 
-#bat-header:hover, #foe-header:hover, #man-header:hover {
+#tic-header:hover, #toe-header:hover, #tac-header:hover {
   text-decoration: underline;
   text-decoration-color: var(--text-color);
   text-decoration-thickness: 10px;
 }
 
-#batman-player-selector, #joker-player-selector {
-  transform-origin: center;
-  transform: rotate(-7deg);
-  transition: 0.7s;
+#tic-header, #toe-header {
+  margin: 0 10px;
 }
 
-#batman-player-selector:hover, #joker-player-selector:hover {
-  transform-origin: center;
-  transform: rotate(7deg);
+#tac-header {
+  margin: 0 10px;
+}
+
+h2, #x-marker, #o-marker {
+  margin: 10px 0;
+}
+
+#x-marker, #o-marker {
+  color: var(--text-color);
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+#x-marker:hover, #o-marker:hover {
   text-decoration: underline;
   text-decoration-color: var(--text-color);
-  text-decoration-thickness: 3px;
-}
-
-#batman-select-img, #joker-select-img {
-  object-fit: cover;
-  width: 100px;
-  height: 100px;
-  cursor: pointer;
-  border-width: 4px;
-  border-style: solid;
-  border-color: var(--text-color);
-  border-radius: 20px;
-}
-
-#bat-header, #foe-header {
-  margin: 0 10px;
-  transform-origin: center;
-  transform: rotate(10deg);
-  transition: 0.7s;
-}
-
-#man-header {
-  transform-origin: center;
-  margin: 0 10px;
-  transform: rotate(-10deg);
-  transition: 0.7s;
-}
-
-#bat-header:hover, #foe-header:hover {
-  margin: 0 10px;
-  transform-origin: center;
-  transform: rotate(-7deg);
-}
-
-#man-header:hover {
-  transform-origin: center;
-  margin: 0 10px;
-  transform: rotate(7deg);
-}
-
-h2, h3 {
-  margin: 10px 0;
 }
 
 #container {
@@ -95,20 +63,17 @@ h2, h3 {
   margin-right: 50px;
 }
 
-#player-selector {
-  width: 150px;
+#marker-selector {
+  display: flex;
+  font-size: 50px;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
   height: auto;
-  padding-bottom: 20px;
   border-width: 2px;
   border-style: solid;
   border-color: var(--box-bg-color);
   border-radius: 20px;
-}
-
-#batman-player-selector, #joker-player-selector {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 #game-board {
@@ -137,10 +102,11 @@ h2, h3 {
     justify-content: center;
   }
 
-  #player-selector {
-    width: 300px;
+  #marker-selector {
+    width: 200px;
     height: auto;
     display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
   }
 
