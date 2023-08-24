@@ -92,8 +92,10 @@ h2, #x-marker, #o-marker {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 35px;
+  font-size: 90px;
+  font-weight: bolder;
   cursor: pointer;
+  color: var(--text-color);
 }
 
 @media (max-width: 650px) {

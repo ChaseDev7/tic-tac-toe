@@ -6,5 +6,3 @@ Made with:
 
 - VSCode
 - Google Chrome (for testing)
-
-IMPORTANT NOTE: I do not own the copyright to any of the images or names used in this project. It is the property of DC Comics and Warner Bros.
