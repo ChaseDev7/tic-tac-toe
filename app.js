@@ -79,16 +79,25 @@ const gameController = (() => {
     const boxSelected = document.querySelectorAll(".box");
 
     boxSelected.forEach((box) => {
-      box.addEventListener("click", () => {
-        console.log(box.id + " works");
+      box.addEventListener("click", function addPlayerToBoxSelected () {
         box.textContent = currentPlayer;
         gameBoard.gameBoardArray.splice(box.dataset.boxId, 1, currentPlayer);
+        if (gameBoard.gameBoardArray[box.dataset.boxId] !== "") {
+          box.removeEventListener("click", addPlayerToBoxSelected);
+        };
         updateCurrentPlayer();
+        checkForGameWin();
       });
     });
   };
 
-  return { updateCurrentPlayer, addSelectedBoxToBoard }
+  const checkForGameWin = () => {
+    if (gameBoard.gameBoardArray[0] === "X" && gameBoard.gameBoardArray[1] === "X" && gameBoard.gameBoardArray[2] === "X") {
+      console.log("X wins!");
+    };
+  };
+
+  return { updateCurrentPlayer, addSelectedBoxToBoard };
 })();
 
 console.log(gameBoard.gameBoardArray);
