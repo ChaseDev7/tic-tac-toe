@@ -46,29 +46,12 @@ const gameBoard = (() => {
   showGameBoardArray();
 
   const removeGameBoardArray = () => {
-    boardContainer.removeChild(board);
-
-    showNewGameBoardArray();
-  };
-
-  const showNewGameBoardArray = () => {
-    const newBoard = document.createElement("div");
-    newBoard.setAttribute("id", "game-board");
-    boardContainer.appendChild(newBoard);
-    let boxNumber = 1;
-
-    for (i = 0; i < gameBoardArray.length; i++) {
-      const box = document.createElement("div");
-      box.classList.add("box");
-      box.setAttribute("id", "box-" + boxNumber++);
-      box.setAttribute("data-box-id", i);
-      newBoard.appendChild(box);
-    };
-
-    return { showNewGameBoardArray }
+    board.innerHTML = "";
+    boardContainer.appendChild(board);
+    showGameBoardArray();
   };
   
-  return { gameBoardArray, showGameBoardArray, removeGameBoardArray, showNewGameBoardArray };
+  return { gameBoardArray, showGameBoardArray, removeGameBoardArray };
 })();
 
 const gameController = (() => {
@@ -170,15 +153,18 @@ const gameController = (() => {
     body.appendChild(msgBackground);
     msgContainer.style.display = "flex";
     body.appendChild(msgContainer);
+    const infoContainer = document.createElement("div");
+    infoContainer.setAttribute("id", "winner-info-container");
+    msgContainer.appendChild(infoContainer);
     const winner = document.createElement("p");
+    winner.setAttribute("id", "game-winner-text");
     winner.style.color = "white";
-    winner.style.fontSize = "25px";
     winner.textContent = `${currentPlayer} wins!`;
-    msgContainer.appendChild(winner);
+    infoContainer.appendChild(winner);
     const restartBtn = document.createElement("button");
     restartBtn.classList.add("restart-button");
     restartBtn.textContent = "RESTART";
-    msgContainer.appendChild(restartBtn);
+    infoContainer.appendChild(restartBtn);
 
     restartBtn.addEventListener("click", restartGame);
   }
@@ -186,10 +172,16 @@ const gameController = (() => {
   const restartGame = () => {
     msgBackground.style.display = "none";
     msgContainer.style.display = "none";
+    const winnerText = document.querySelector("#game-winner-text");
+    msgContainer.removeChild(winnerText);
+    const winnerRestartBtn = document.querySelector(".restart-button");
+    msgContainer.removeChild(winnerRestartBtn);
     gameBoard.gameBoardArray = [null, null, null, null, null, null, null, null, null];
     currentPlayer = "";
     addSelectedBoxToBoard();
     gameBoard.removeGameBoardArray();
+    xMarker.addEventListener("click", xSelectIsCurrentPlayer);
+    oMarker.addEventListener("click", oSelectIsCurrentPlayer);
   }
 
   return { updateCurrentPlayer, addSelectedBoxToBoard };
