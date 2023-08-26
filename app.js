@@ -26,7 +26,6 @@ const gameBoard = (() => {
 
   // Creates the game board.
   const boardContainer = document.querySelector("#board-container");
-  boardContainer.innerHTML = "";
   const board = document.createElement("div");
   board.setAttribute("id", "game-board");
   boardContainer.appendChild(board);
@@ -45,8 +44,31 @@ const gameBoard = (() => {
   };
 
   showGameBoardArray();
+
+  const removeGameBoardArray = () => {
+    boardContainer.removeChild(board);
+
+    showNewGameBoardArray();
+  };
+
+  const showNewGameBoardArray = () => {
+    const newBoard = document.createElement("div");
+    newBoard.setAttribute("id", "game-board");
+    boardContainer.appendChild(newBoard);
+    let boxNumber = 1;
+
+    for (i = 0; i < gameBoardArray.length; i++) {
+      const box = document.createElement("div");
+      box.classList.add("box");
+      box.setAttribute("id", "box-" + boxNumber++);
+      box.setAttribute("data-box-id", i);
+      newBoard.appendChild(box);
+    };
+
+    return { showNewGameBoardArray }
+  };
   
-  return { gameBoardArray, showGameBoardArray };
+  return { gameBoardArray, showGameBoardArray, removeGameBoardArray, showNewGameBoardArray };
 })();
 
 const gameController = (() => {
@@ -164,11 +186,10 @@ const gameController = (() => {
   const restartGame = () => {
     msgBackground.style.display = "none";
     msgContainer.style.display = "none";
-    // FIX SO THAT GAME BOARD RESETS MARKERS...
-    gameBoard.gameBoardArray = [];
-    gameBoard.showGameBoardArray();
+    gameBoard.gameBoardArray = [null, null, null, null, null, null, null, null, null];
     currentPlayer = "";
     addSelectedBoxToBoard();
+    gameBoard.removeGameBoardArray();
   }
 
   return { updateCurrentPlayer, addSelectedBoxToBoard };
