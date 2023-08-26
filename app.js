@@ -6,6 +6,7 @@ const Player = (player, selector) => {
   return { playerName, boardSelector }
 }
 
+// Creates blank variable, so it can be modified while playing the game.
 let currentPlayer = "";
 
 // Individual players created with markers.
@@ -41,6 +42,10 @@ const gameBoard = (() => {
 
   showGameBoardArray();
   
+  return { gameBoardArray };
+})();
+
+const gameController = (() => {
   const xMarker = document.querySelector("#x-marker");
   xMarker.textContent = player.boardSelector;
   const oMarker = document.querySelector("#o-marker");
@@ -49,38 +54,41 @@ const gameBoard = (() => {
   function xSelectIsCurrentPlayer () {
     currentPlayer = xMarker.textContent;
     oMarker.removeEventListener("click", oSelectIsCurrentPlayer);
+    addSelectedBoxToBoard();
   }
 
   function oSelectIsCurrentPlayer () {
     currentPlayer = oMarker.textContent;
     xMarker.removeEventListener("click", xSelectIsCurrentPlayer);
+    addSelectedBoxToBoard();
   }
 
   xMarker.addEventListener("click", xSelectIsCurrentPlayer);
 
   oMarker.addEventListener("click", oSelectIsCurrentPlayer);
-  
-  return { gameBoardArray, showGameBoardArray };
-})();
 
-// Selects whichever box is clicked on the game board.
-const boxSelectedOnBoard = (() => {
+  const updateCurrentPlayer = () => {
+    if (currentPlayer == "X") {
+      currentPlayer = "O";
+    } else if (currentPlayer == "O") {
+      currentPlayer = "X";
+    }
+  };
+
   const addSelectedBoxToBoard = () => {
     const boxSelected = document.querySelectorAll(".box");
-    console.log(boxSelected);
 
     boxSelected.forEach((box) => {
       box.addEventListener("click", () => {
         console.log(box.id + " works");
+        box.textContent = currentPlayer;
+        gameBoard.gameBoardArray.splice(box.dataset.boxId, 1, currentPlayer);
+        updateCurrentPlayer();
       });
     });
-  }
-  
-  return { addSelectedBoxToBoard }
-})();
+  };
 
-const gameController = (() => {
-  boxSelectedOnBoard.addSelectedBoxToBoard();
+  return { updateCurrentPlayer, addSelectedBoxToBoard }
 })();
 
 console.log(gameBoard.gameBoardArray);
