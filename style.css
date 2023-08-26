@@ -55,6 +55,7 @@ h2, #x-marker, #o-marker {
 #container {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 #selector-container {
@@ -77,6 +78,22 @@ h2, #x-marker, #o-marker {
   border-radius: 20px;
 }
 
+#restart-button {
+  background-color: var(--text-color);
+  height: 40px;
+  padding: 0 20px;
+  margin: 20px 0;
+  border-radius: 20px;
+  border: none;
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+#restart-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
 #game-board {
   width: 400px;
   height: 400px;
@@ -84,6 +101,20 @@ h2, #x-marker, #o-marker {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 5px;
+}
+
+#start-message {
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  padding: 10px 15px;
+  color: white;
+  background-color: var(--background-color);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--text-color);
+  width: 130px;
+  border-radius: 20px;
 }
 
 #winner-message-bg {
@@ -166,11 +197,13 @@ h2, #x-marker, #o-marker {
   }
 
   h1 {
-    margin: 3px;
+    margin: 3px 0 20px 0;
+    font-size: 35px;
   }
 
   #marker-selector {
-    width: 200px;
+    font-size: 35px;
+    width: 150px;
     margin-left: 10px;
     height: auto;
     display: flex;
@@ -194,5 +227,17 @@ h2, #x-marker, #o-marker {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+  }
+
+  #game-board {
+    width: 300px;
+    height: 300px;
+    gap: 5px;
+  }
+
+  .box {
+    width: 95px;
+    height: 95px;
+    font-size: 70px;
   }
 }
