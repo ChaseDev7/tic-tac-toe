@@ -6,3 +6,7 @@ Made with:
 
 - VSCode
 - Google Chrome (for testing)
+
+Resources used:
+
+- MDN docs
