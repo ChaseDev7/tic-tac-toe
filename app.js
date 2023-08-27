@@ -6,8 +6,8 @@ const Player = (player, selector) => {
   const playerName = player;
   const boardSelector = selector;
 
-  return { playerName, boardSelector }
-}
+  return { playerName, boardSelector };
+};
 
 // Creates blank variable, so it can be modified while playing the game.
 let currentPlayer = "";
@@ -64,20 +64,22 @@ const gameController = (() => {
   // Creates variables for winning message.
   const msgContainer = document.querySelector("#message-container");
   const msgBackground = document.querySelector("#winner-message-bg");
+  const infoContainer = document.createElement("div");
+  infoContainer.setAttribute("id", "winner-info-container");
 
   // Assigns "X" as the current player.
   function xSelectIsCurrentPlayer () {
     currentPlayer = xMarker.textContent;
     oMarker.removeEventListener("click", oSelectIsCurrentPlayer);
     addSelectedBoxToBoard();
-  }
+  };
 
   // Assigns "O" as the current player.
   function oSelectIsCurrentPlayer () {
     currentPlayer = oMarker.textContent;
     xMarker.removeEventListener("click", xSelectIsCurrentPlayer);
     addSelectedBoxToBoard();
-  }
+  };
 
   // Selects which player can currently play on the gameboard.
   xMarker.addEventListener("click", xSelectIsCurrentPlayer);
@@ -89,7 +91,7 @@ const gameController = (() => {
       currentPlayer = "O";
     } else if (currentPlayer == "O") {
       currentPlayer = "X";
-    }
+    };
   };
 
   const addSelectedBoxToBoard = () => {
@@ -110,51 +112,72 @@ const gameController = (() => {
 
   // Looks to see if any of the winning conditions are met.
   const checkForGameWin = () => {
-    if (gameBoard.gameBoardArray[0] === "X" && gameBoard.gameBoardArray[1] === "X" && gameBoard.gameBoardArray[2] === "X") {
+    let arr = gameBoard.gameBoardArray;
+    if (arr[0] === "X" && arr[1] === "X" && arr[2] === "X") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[0] === "X" && gameBoard.gameBoardArray[3] === "X" && gameBoard.gameBoardArray[6] === "X") {
+    } else if (arr[0] === "X" && arr[3] === "X" && arr[6] === "X") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[2] === "X" && gameBoard.gameBoardArray[5] === "X" && gameBoard.gameBoardArray[8] === "X") {
+    } else if (arr[2] === "X" && arr[5] === "X" && arr[8] === "X") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[6] === "X" && gameBoard.gameBoardArray[7] === "X" && gameBoard.gameBoardArray[8] === "X") {
+    } else if (arr[6] === "X" && arr[7] === "X" && arr[8] === "X") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[1] === "X" && gameBoard.gameBoardArray[4] === "X" && gameBoard.gameBoardArray[7] === "X") {
+    } else if (arr[1] === "X" && arr[4] === "X" && arr[7] === "X") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[3] === "X" && gameBoard.gameBoardArray[4] === "X" && gameBoard.gameBoardArray[5] === "X") {
+    } else if (arr[3] === "X" && arr[4] === "X" && arr[5] === "X") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[0] === "X" && gameBoard.gameBoardArray[4] === "X" && gameBoard.gameBoardArray[8] === "X") {
+    } else if (arr[0] === "X" && arr[4] === "X" && arr[8] === "X") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[2] === "X" && gameBoard.gameBoardArray[4] === "X" && gameBoard.gameBoardArray[6] === "X") {
+    } else if (arr[2] === "X" && arr[4] === "X" && arr[6] === "X") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[0] === "O" && gameBoard.gameBoardArray[1] === "O" && gameBoard.gameBoardArray[2] === "O") {
+    } else if (arr[0] === "O" && arr[1] === "O" && arr[2] === "O") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[0] === "O" && gameBoard.gameBoardArray[3] === "O" && gameBoard.gameBoardArray[6] === "O") {
+    } else if (arr[0] === "O" && arr[3] === "O" && arr[6] === "O") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[2] === "O" && gameBoard.gameBoardArray[5] === "O" && gameBoard.gameBoardArray[8] === "O") {
+    } else if (arr[2] === "O" && arr[5] === "O" && arr[8] === "O") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[6] === "O" && gameBoard.gameBoardArray[7] === "O" && gameBoard.gameBoardArray[8] === "O") {
+    } else if (arr[6] === "O" && arr[7] === "O" && arr[8] === "O") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[1] === "O" && gameBoard.gameBoardArray[4] === "O" && gameBoard.gameBoardArray[7] === "O") {
+    } else if (arr[1] === "O" && arr[4] === "O" && arr[7] === "O") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[3] === "O" && gameBoard.gameBoardArray[4] === "O" && gameBoard.gameBoardArray[5] === "O") {
+    } else if (arr[3] === "O" && arr[4] === "O" && arr[5] === "O") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[0] === "O" && gameBoard.gameBoardArray[4] === "O" && gameBoard.gameBoardArray[8] === "O") {
+    } else if (arr[0] === "O" && arr[4] === "O" && arr[8] === "O") {
       winningMessageForPlayer();
-    } else if (gameBoard.gameBoardArray[2] === "O" && gameBoard.gameBoardArray[4] === "O" && gameBoard.gameBoardArray[6] === "O") {
+    } else if (arr[2] === "O" && arr[4] === "O" && arr[6] === "O") {
       winningMessageForPlayer();
-    } else {
+    } else if (arr.includes(null)) {
       updateCurrentPlayer();
+    } else {
+      drawMsgForPlayer();
     }
   };
 
-  // Displays winning message and which player won the game.
+  // Displays game draw message and button to restart game.
+  const drawMsgForPlayer = () => {
+    msgBackground.style.display = "flex";
+    body.appendChild(msgBackground);
+    msgContainer.style.display = "flex";
+    body.appendChild(msgContainer);
+    msgContainer.appendChild(infoContainer);
+    const winner = document.createElement("p");
+    winner.setAttribute("id", "game-winner-text");
+    winner.style.color = "white";
+    winner.textContent = `It's a draw!`;
+    infoContainer.appendChild(winner);
+    const restartBtn = document.createElement("button");
+    restartBtn.classList.add("restart-button");
+    restartBtn.textContent = "RESTART";
+    infoContainer.appendChild(restartBtn);
+
+    restartBtn.addEventListener("click", restartGame);
+  }
+
+  // Displays winning message and which player won the game, plus button to restart game.
   const winningMessageForPlayer = () => {
     msgBackground.style.display = "flex";
     body.appendChild(msgBackground);
     msgContainer.style.display = "flex";
     body.appendChild(msgContainer);
-    const infoContainer = document.createElement("div");
-    infoContainer.setAttribute("id", "winner-info-container");
     msgContainer.appendChild(infoContainer);
     const winner = document.createElement("p");
     winner.setAttribute("id", "game-winner-text");
@@ -167,24 +190,38 @@ const gameController = (() => {
     infoContainer.appendChild(restartBtn);
 
     restartBtn.addEventListener("click", restartGame);
-  }
+  };
 
+  // After game is over, will reset all variables and functions to default to replay the game.
   const restartGame = () => {
     msgBackground.style.display = "none";
     msgContainer.style.display = "none";
     const winnerText = document.querySelector("#game-winner-text");
-    msgContainer.removeChild(winnerText);
+    infoContainer.removeChild(winnerText);
     const winnerRestartBtn = document.querySelector(".restart-button");
-    msgContainer.removeChild(winnerRestartBtn);
+    infoContainer.removeChild(winnerRestartBtn);
     gameBoard.gameBoardArray = [null, null, null, null, null, null, null, null, null];
     currentPlayer = "";
     addSelectedBoxToBoard();
     gameBoard.removeGameBoardArray();
     xMarker.addEventListener("click", xSelectIsCurrentPlayer);
     oMarker.addEventListener("click", oSelectIsCurrentPlayer);
-  }
+  };
+
+  // Resets the current game being played if RESET button on screen is clicked.
+  const clearGame = () => {
+    gameBoard.gameBoardArray = [null, null, null, null, null, null, null, null, null];
+    currentPlayer = "";
+    addSelectedBoxToBoard();
+    gameBoard.removeGameBoardArray();
+    xMarker.addEventListener("click", xSelectIsCurrentPlayer);
+    oMarker.addEventListener("click", oSelectIsCurrentPlayer);
+  };
+
+  // Allows player to click RESET button and restart the game.
+  const resetButton = document.querySelector("#reset-button");
+  
+  resetButton.addEventListener("click", clearGame);
 
   return { updateCurrentPlayer, addSelectedBoxToBoard };
 })();
-
-console.log(gameBoard.gameBoardArray);
